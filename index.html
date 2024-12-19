@@ -1,7 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #282c34;
+      overflow: hidden;
+    }
+    .container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+    img {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      transform-origin: center;
+      animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+  <div class="container">
+    <img id="nikita.webp" src="nikita.webp" alt="Rotating Image">
+  </div>
+  <script>
+    const img = document.getElementById("nikita");
+    let angle = 0;
+    const radius = 50; // Радиус движения по синусоиде
+
+    function animate() {
+      angle += 0.05;
+      const x = radius * Math.sin(angle);
+      const y = radius * Math.cos(angle);
+      img.style.transform = `translate(${x}px, ${y}px) rotate(${angle * 20}deg)`;
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 </body>
 </html>
