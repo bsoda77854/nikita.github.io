@@ -1,59 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Site</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #282c34;
-      overflow: hidden;
-    }
-    .container {
-      position: relative;
-      width: 200px;
-      height: 200px;
-    }
-    img {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      transform-origin: center;
-      animation: spin 2s linear infinite;
-    }
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave Scaling Image</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        img {
+            position: absolute;
+            transform-origin: center;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <img id="nikita.webp" src="nikita.webp" alt="Rotating Image">
-  </div>
-  <script>
-    const img = document.getElementById("nikita");
-    let angle = 0;
-    const radius = 50; // Радиус движения по синусоиде
+    <img src="nikita.webp" alt="Nikita" id="waveImage">
 
-    function animate() {
-      angle += 0.05;
-      const x = radius * Math.sin(angle);
-      const y = radius * Math.cos(angle);
-      img.style.transform = `translate(${x}px, ${y}px) rotate(${angle * 20}deg)`;
-      requestAnimationFrame(animate);
-    }
+    <script>
+        const image = document.getElementById('waveImage');
+        let startTime = null;
 
-    animate();
-  </script>
+        function animate(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+
+            const scaleX = 1 + Math.sin(elapsed / 500) * 0.2; // X scale changes over time
+            const scaleY = 1 + Math.cos(elapsed / 500) * 0.2; // Y scale changes over time
+
+            image.style.transform = `scale(${scaleX}, ${scaleY})`;
+
+            requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+    </script>
 </body>
 </html>
