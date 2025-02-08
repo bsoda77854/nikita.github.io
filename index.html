@@ -31,7 +31,7 @@
     </style>
 </head>
 <body>
-    <img src="nikita.webp" alt="Nikita" id="waveImage">
+    <img src="pizzele.gif" alt="Pizzele" id="waveImage">
 
     <script>
         const image = document.getElementById('waveImage');
@@ -41,8 +41,8 @@
             if (!startTime) startTime = timestamp;
             const elapsed = timestamp - startTime;
 
-            const scaleX = 1 + Math.sin(elapsed / 500) * 0.2; // X scale changes over time
-            const scaleY = 1 + Math.cos(elapsed / 500) * 0.2; // Y scale changes over time
+            const scaleX = 1 + Math.sin(elapsed / 500) * 0.5; // X scale changes over time
+            const scaleY = 1 + Math.cos(elapsed / 200) * 0.2; // Y scale changes over time
 
             image.style.transform = `scale(${scaleX}, ${scaleY})`;
 
