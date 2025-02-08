@@ -10,13 +10,23 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background: linear-gradient(to bottom, black, #000000);
             overflow: hidden;
         }
 
         img {
             position: absolute;
             transform-origin: center;
+            filter: url(#rainbow);
+        }
+
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        #waveImage {
+            animation: rainbow 5s linear infinite;
         }
     </style>
 </head>
@@ -43,3 +53,4 @@
     </script>
 </body>
 </html>
+	
